@@ -9,7 +9,7 @@ import { ActivityCategory } from '../models/activity-category';
 })
 export class ActivitiesCategoriesService {
 
-  private api : string = environment.api;
+  private api : string = environment.api+"/api";
   categories!: ActivityCategory[];
   categories$ = new BehaviorSubject<ActivityCategory[]>([]);
 
@@ -66,9 +66,9 @@ export class ActivitiesCategoriesService {
      * Récuperer des objets
      */
     getAll(){
-      this._http.get(this.api+'/getAll/').subscribe(
-        (categories : any)=>{
-          this.categories = categories
+      this._http.get(this.api+'/activity-sub-categories/?populate=*').subscribe(
+        (res : any)=>{
+          this.categories = res.data
           this.emit()
         },
         (error : any)=>{

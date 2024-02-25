@@ -1,57 +1,170 @@
-<app-page-header title="Action / Shine Academy" [sa]="true" img="assets/img/logos/Shine Acad logo1 .png"></app-page-header>
+<app-page-header title="Action / Shine Academy" [sa]="true"
+  img="assets/img/logos/Shine Acad logo1 .png"></app-page-header>
 
 <!--================Action / Shine Academy=================-->
 <section class="blog_area single-post-area section-padding" style="padding: 60px 0 !important;">
   <div class="container">
-     <div class="row">
-        <div class="col-lg-8 posts-list">
-           <div class="single-post">
-              <!-- <div class="feature-img">
+    <div class="row">
+      <div class="col-lg-8 posts-list">
+        <div class="single-post">
+          <!-- <div class="feature-img">
                  <img class="img-fluid" src="assets/img/blog/single_blog_1.png" alt="">
               </div> -->
-              <div class="blog_details">
-                 <h2>LA SHINE ACADEMY.
-                 </h2>
-                 <ul class="blog-info-link mt-3 mb-4">
-                    <li> Le pôle éducatif de l’association.</li>
-                 </ul>
-                 <div class="quote-wrapper">
-                  <div class="quotes" style="border-left: 2px solid #ffcc00;">
-                    Face à l’évolution du continent, il est nécessaire d’avoir un éveil de conscience
+          <div class="blog_details">
+            <h2>LA SHINE ACADEMY.
+            </h2>
+            <ul class="blog-info-link mt-3 mb-4">
+              <li> Le pôle éducatif de l’association.</li>
+            </ul>
+            <div class="quote-wrapper">
+              <div class="quotes" style="border-left: 2px solid #ffcc00;">
+                <!-- Face à l’évolution du continent, il est nécessaire d’avoir un éveil de conscience
                     et une mise à niveau. L&#39;éducation est un puissant facteur de changement et nous
                     avons la chance d’avoir des canaux de communication modernes et accessibles
-                    pour SE FORMER et S’INFORMER.
-                  </div>
-               </div>
-               <ul class="blog-info-link mt-3 mb-4">
-                <li>Les formations</li>
-                </ul>
-                 <p class="excert">
-                  C’est la mise en place de sessions d’apprentissage de différents modules utiles et
-                  d’actualités pour optimiser son parcours. Se perfectionner permet de développer
-                  des compétences supplémentaires et de mieux répondre aux attentes du marché
-                  de l&#39;emploi.
-                 </p>
-                 <ul class="blog-info-link mt-3 mb-4">
-                  <li>Les conférences (AUTOUR D’UNE VOIX)</li>
-                  </ul>
-                 <p>
-                  Des panels instructifs pour accroître nos connaissances, et ne plus être isoler.
-                  C’est également un partage d’expériences qui permettra d’agrandir notre réseau
-                  de contacts
-                 </p>
-                 <ul class="blog-info-link mt-3 mb-4">
-                  <li>Le mentorat</li>
-                  </ul>
-                 <p>
-                  Il s’agit une forme d’accompagnement faite sur mesure. Chaque relation est
-                  différente et permet au mentoré d’être encadré en fonction de ses objectifs et de
-                  sa réalité professionnelle ou même personnelle.
-                 </p>
+                    pour SE FORMER et S’INFORMER. -->
+                SHINE ACADEMY est le pôle éducatif de l’association. Face à l’évolution du continent, il est nécessaire
+                d’avoir un éveil de conscience et une mise à niveau. La jeunesse doit s’atteler à avoir les compétences
+                et les connaissances requises pour pouvoir prendre la relève. L'éducation est un puissant facteur de
+                changement et nous avons la chance d’avoir des canaux de communication modernes et accessibles pour SE
+                FORMER et S’INFORMER.
               </div>
-           </div>
+            </div>
+            <!-- <ul class="blog-info-link mt-3 mb-4">
+              <li>Les formations</li>
+            </ul>
+            <p class="excert">
+              C’est la mise en place de sessions d’apprentissage de différents modules utiles et
+              d’actualités pour optimiser son parcours. Se perfectionner permet de développer
+              des compétences supplémentaires et de mieux répondre aux attentes du marché
+              de l&#39;emploi.
+            </p>
+            <ul class="blog-info-link mt-3 mb-4">
+              <li>Les conférences (AUTOUR D’UNE VOIX)</li>
+            </ul>
+            <p>
+              Des panels instructifs pour accroître nos connaissances, et ne plus être isoler.
+              C’est également un partage d’expériences qui permettra d’agrandir notre réseau
+              de contacts
+            </p>
+            <ul class="blog-info-link mt-3 mb-4">
+              <li>Le mentorat</li>
+            </ul>
+            <p>
+              Il s’agit une forme d’accompagnement faite sur mesure. Chaque relation est
+              différente et permet au mentoré d’être encadré en fonction de ses objectifs et de
+              sa réalité professionnelle ou même personnelle.
+            </p> -->
+          </div>
         </div>
-     </div>
+      </div>
+    </div>
   </div>
 </section>
+<!-- news__area_start  [hidden]="!activities.length"  -->
+<div  class="news__area section_padding" style="padding: 60px 0 !important;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="section_title text-center mb-55">
+          <h3><span id="activity-span-sa">Activités</span></h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div  class="col-lg-8 mb-5 mb-lg-0">
+        <div *ngIf="activities.length" class="blog_left_sidebar">
+
+          <div *ngIf="categories.length && selectedCat != null">
+            <div>
+              <h2>&nbsp; {{selectedCat.attributes.name}}</h2>
+            </div>
+            <div class="quote-wrapper"  style="background: white;">
+              <div class="quotes" style="border-left: 2px solid #b96c44;">
+                {{selectedCat.attributes.description}}
+              </div>
+            </div>
+            <br>
+          </div>
+
+          <article *ngFor="let activity of activities" class="blog_item">
+            <div class="blog_item_img">
+              <img class="card-img rounded-0" [src]="activity.attributes.picture?.data?.attributes?.url" alt="">
+              <a href="#" class="blog_item_date flex-column d-flex justify-content-center align-items-center"
+                style="background-color: #b96c44;">
+                <h3>{{activity.attributes.date | date : 'd'}}</h3>
+                <p>{{activity.attributes.date | date : 'MMM'}} {{activity.attributes.createdAt | date : 'y'}}</p>
+              </a>
+            </div>
+
+            <div class="blog_details" style="background-color: white;">
+              <a class="d-inline-block" href="single-blog.html">
+                <h2>{{activity.attributes.title}}</h2>
+              </a>
+              <ul *ngIf="activity.attributes.subtitle" class="blog-info-link">
+                <li><a href="javascript:void(0)">
+                    <!-- <i class="fa fa-user"></i>  -->
+                    {{activity.attributes.subtitle}}</a></li>
+              </ul>
+              <p>{{activity.attributes.description}}</p>
+
+            </div>
+          </article>
+
+
+        </div>
+        <div *ngIf="!activities.length" class="container">
+          <div class="row ">
+             <div class="col-lg-12 d-flex justify-content-center align-items-center">
+               <h3 class="text-heading">Aucune activité pour l'instant !</h3>
+             </div>
+             <div class="col-lg-12 d-flex justify-content-center align-items-center">
+               <img src="assets/img/icons/no-data.svg" height="150px" alt="">
+             </div>
+          </div>
+       </div>
+        <!-- <nav *ngIf="pages.length>1" class="blog-pagination justify-content-center d-flex">
+            <ul class="pagination">
+                <li *ngIf="currentPage > 1" class="page-item" (click)="getActivitiesBypage(currentPage-1)">
+                    <a href="javascript:void(0)" class="page-link" aria-label="Previous">
+                        <i class="ti-angle-left"></i>
+                    </a>
+                </li>
+                <li *ngFor="let i of pages" class="page-item" [class]="{'active' : i  == currentPage}" (click)="getActivitiesBypage(i)">
+                    <a href="javascript:void(0)" class="page-link">{{i}}</a>
+                </li>
+                <li *ngIf="currentPage < numberTotalOfpage" class="page-item" (click)="getActivitiesBypage(currentPage-1)">
+                    <a href="javascript:void(0)" class="page-link" aria-label="Next">
+                        <i class="ti-angle-right"></i>
+                    </a>
+                </li>
+            </ul>
+          </nav> -->
+      </div>
+      <div class="col-lg-4">
+        <div class="blog_right_sidebar">
+          <aside class="single_sidebar_widget post_category_widget sticky-cat aside-cat">
+            <h4 class="widget_title">Catégorie</h4>
+            <ul class="list cat-list">
+              <li>
+                <a [ngClass]="{'cat-active':selectedCat == null}" href="javascript:void(0)" class="d-flex"
+                  (click)="getAll()">
+                  <p>Tous</p>
+                  <!-- <p>(37)</p> -->
+                </a>
+              </li>
+              <li *ngFor="let cat of categories">
+                <a [ngClass]="{'cat-active':selectedCat?.id == cat.id}" href="javascript:void(0)" class="d-flex"
+                  (click)="getByCat(cat)">
+                  <p>{{cat.attributes.name}}</p>
+                  <!-- <p>(37)</p> -->
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- news__area_end  -->
 <!--================ Action / Shine Academy =================-->

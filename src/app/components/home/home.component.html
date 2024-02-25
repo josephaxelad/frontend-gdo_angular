@@ -217,12 +217,13 @@
                           <img class="carmobileimg" height="300px" [src]="activity.attributes.picture?.data?.attributes?.url" alt="">
                       </div>
                       <div class="newsinfo ">
-                          <span class="">{{activity.attributes.createdAt | date : 'd'}}, {{activity.attributes.createdAt | date : 'MMM'}} {{activity.attributes.createdAt | date : 'y'}}</span>
-                          <a href="javascript:void(0)">
-                              <h3 class="">{{activity.attributes.title}}</h3>
+                          <span class="">{{activity.attributes.createdAt | date : 'd'}}, {{activity.attributes.date | date : 'MMM'}} {{activity.attributes.date | date : 'y'}}</span>
+                          <a href="javascript:void(0)"  [routerLink]="['/activites']">
+                              <h3 class="oft3lines " style="max-width: 250px;">{{activity.attributes.title}}</h3>
                           </a>
                           <p class="oft3lines " style="max-width: 250px;height: 100px;">{{activity.attributes.description}}</p>
-                          <a class="read_more" href="javascript:void(0)" [routerLink]="['/activites']">voir plus</a>
+                          <a *ngIf="activity.attributes.categorie_de_l_activites.data[0]?.id! ==1" class="read_more" href="javascript:void(0)" [routerLink]="['/actions/coeur-d-or']" fragment="activity-span-cdo">voir plus</a>
+                          <a *ngIf="activity.attributes.categorie_de_l_activites.data[0]?.id! ==2" class="read_more" href="javascript:void(0)" [routerLink]="['/actions/shine-academy']" fragment="activity-span-sa">voir plus</a>
                       </div>
                   </div>
 

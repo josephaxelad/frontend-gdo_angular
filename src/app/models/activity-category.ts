@@ -6,5 +6,6 @@ export interface ActivityCategory {
     createdAt: Date;
     updatedAt: Date;
     publishedAt: Date;
-  }
+    categorie_de_l_activites : {data : ActivityCategory[]
+  }}
 }

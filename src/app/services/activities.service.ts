@@ -72,7 +72,7 @@ export class ActivitiesService {
     getAll(){
       this._http.get(this.api+'/activities?populate=*&sort=createdAt:desc').subscribe(
         (res : any)=>{
-          this.numberOfActivities = res.data.length
+          this.numberOfActivities = res.meta.pagination.total
           this.numberOfActivities$.next(this.numberOfActivities)
           this.activities = res.data
           this.emit()

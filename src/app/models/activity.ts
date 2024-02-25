@@ -1,3 +1,5 @@
+import { ActivityCategory } from "./activity-category";
+
 export interface Activity {
   id : number;
   attributes:{
@@ -12,5 +14,7 @@ export interface Activity {
     createdAt: Date;
     updatedAt: Date;
     publishedAt: Date;
+    categorie_de_l_activites:{data : ActivityCategory[]};
+    sous_categorie_de_l_activites:{data : ActivityCategory[]} ;
   }
 }

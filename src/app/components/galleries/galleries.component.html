@@ -8,7 +8,7 @@
       <div class="row gallery-item">
         <div *ngFor="let image of gallerieByPage;let i = index" [ngClass]="getLength(i+1) ? 'col-md-6' : 'col-md-4'" >
           <a  [attr.href]="image.attributes.image.data.attributes.url" class="img-pop-up">
-            <div class="single-gallery-image" [ngStyle]="{'background-image': 'url('+image.attributes.image.data.attributes.url+')'}" ></div>
+            <div class="single-gallery-image" [ngStyle]="{'background': 'url('+image.attributes.image.data.attributes.url+')'}" ></div>
           </a>
         </div>
 

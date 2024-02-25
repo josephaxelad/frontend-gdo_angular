@@ -81,10 +81,13 @@ export class MembersService {
      * Récuperer des objets
      */
     getNumberOfMembers(){
-      this._http.get(this.api+'/members').subscribe(
-        (numberOfMembers : any)=>{
-          this.numberOfMembers = numberOfMembers.data.filter((x : any )=> x.attributes.verified == 'oui' ).length
-          console.log(this.numberOfMembers)
+      this._http.get(this.api+'/members?filters[verified][$eq]=oui',
+      ).subscribe(
+        (res : any)=>{
+          // console.log(data)
+          this.numberOfMembers = res.meta.pagination.total
+          // this.numberOfMembers = numberOfMembers.data.filter((x : any )=> x.attributes.verified == 'oui' ).length
+          // console.log(this.numberOfMembers)
           this.emit()
         },
         (error : any)=>{

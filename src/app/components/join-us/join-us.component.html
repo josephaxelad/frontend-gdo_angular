@@ -1,15 +1,51 @@
 <app-page-header title="Nous rejoindre"></app-page-header>
 
   <!-- Start Align Area -->
-	<div class="whole-wrap">
+	<div class="whole-wrap" style="background-color: #29c31d36;">
 		<div class="container box_1170">
 
+      <h1  *ngIf="false" >En maintenance, bientôt disponible !</h1>
+
 			<div class="section-top-border">
+
+
 				<div class="row">
 					<div class="col-lg-7 col-md-8">
 						<h4 class="mb-30">La force d’une association se trouve dans le dynamisme et l’engagement de ses membres,
               rejoignez-nous ! </h4>
 						<form [formGroup]="joinUsForm" (ngSubmit)="add()">
+
+              <div class="row">
+                <div class="col-12">
+                  <div class="single-element-widget mt-30 d-flex flex-column">
+                    <label for="">Vous souhaitez être : </label>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; Bénévole &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio" [checked]="benevoleIsChecked" (click)="updateDescTypeMember('Bénévole')" >
+                        <label for="confirm-radio"></label>
+                      </div>
+                    </div>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; Membre actif &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio1" [checked]="maIsChecked" (click)="updateDescTypeMember('Membre Actif')">
+                        <label for="confirm-radio1"></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-12" style="padding-left: 5%;">
+                  <blockquote class="generic-blockquote" style="border: 2px solid #fc0 !important;font-style: italic;font-size: 12px;">
+                    <!-- -left -->
+                    <div>{{descTypeMember}}</div>
+                  </blockquote>
+                </div>
+              </div>
+
               <!-- Prénoms -->
               <label for="">Prénom(s) : *</label>
 							<div class="">
@@ -98,19 +134,23 @@
                   </div>
 							</div>
               <!-- Domaine d'activité -->
-              <label for="">Domaine d activité : *</label>
+              <label *ngIf="maIsChecked" for="">Domaine d activité : *</label>
+              <label *ngIf="benevoleIsChecked" for="">Profession : *</label>
               <div class="input-group-icon ">
 								<!-- <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div> -->
 								<input formControlName="fieldActivity" type="text" name="address" placeholder="" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = ''" required class="single-input"
                   [ngClass]="{ 'is-invalid':submitted && joinUsForm.controls.fieldActivity.errors }">
-                  <div *ngIf="submitted && joinUsForm.controls.fieldActivity.errors" class="invalid-feedback">
+                  <div *ngIf="maIsChecked && submitted && joinUsForm.controls.fieldActivity.errors" class="invalid-feedback">
+                    <div *ngIf="joinUsForm.controls.fieldActivity.errors.required">Le domaine d'activité est réquis !</div>
+                  </div>
+                  <div *ngIf="benevoleIsChecked && submitted && joinUsForm.controls.fieldActivity.errors" class="invalid-feedback">
                     <div *ngIf="joinUsForm.controls.fieldActivity.errors.required">Le domaine d'activité est réquis !</div>
                   </div>
 							</div>
               <!-- Niveau d'études -->
-              <label for="">Niveau d'études : *</label>
-							<div class="input-group-icon ">
+              <label *ngIf="maIsChecked" for="">Niveau d'études : *</label>
+							<div *ngIf="maIsChecked" class="input-group-icon ">
 								<!-- <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div> -->
 								<div class="form-select" >
 											<select id="studiesLevel-select" >
@@ -129,8 +169,8 @@
 								</div>
 							</div>
               <!-- associativeExperience -->
-              <label for="">Avez vous une expérience associatve ? : *</label>
-              <div class="input-group-icon ">
+              <label *ngIf="maIsChecked" for="">Avez vous une expérience associatve ? : *</label>
+              <div *ngIf="maIsChecked" class="input-group-icon ">
 								<!-- <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div> -->
 								<div class="form-select" >
 											<select id="associativeExperience-select" >
@@ -140,25 +180,26 @@
 								</div>
 							</div>
               <!-- CV -->
-              <label for="">CV :</label>
-              <div class="input-group-icon ">
+              <label *ngIf="maIsChecked" for="">CV :</label>
+              <div *ngIf="maIsChecked" class="input-group-icon ">
 								<!-- <div class="icon"><i class="fa fa-thumb-tack" aria-hidden="true"></i></div> -->
 								<input type="file" name="address" placeholder="" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = ''" required class="single-input" (change)="onChange($event)">
 							</div>
               <!-- Qualités -->
-              <label for="">Selon vous, lesquelles de vos qualités seraient utiles au sein de l association ? : *</label>
+              <label *ngIf="maIsChecked" for="">Selon vous, lesquelles de vos qualités seraient utiles au sein de l association ? : *</label>
+              <label *ngIf="benevoleIsChecked" for=""> Pourquoi voulez vous engager dans l’association ? : *</label>
 							<div class="">
 								<textarea formControlName="qualities" class="single-textarea" placeholder="" onfocus="this.placeholder = ''"
 									onblur="this.placeholder = ''" required
                   [ngClass]="{ 'is-invalid':submitted && joinUsForm.controls.qualities.errors }"></textarea>
                   <div *ngIf="submitted && joinUsForm.controls.qualities.errors" class="invalid-feedback">
-                    <div *ngIf="joinUsForm.controls.qualities.errors.required">Les qualités sont réquises !</div>
+                    <div *ngIf="joinUsForm.controls.qualities.errors.required">Votre réponse est réquise !</div>
                   </div>
 							</div>
               <!-- howKnowUs -->
-              <label for="">Comment avez vous entendu parler de l'assocation ? : *</label>
-              <div class="input-group-icon ">
+              <label *ngIf="maIsChecked" for="">Comment avez vous entendu parler de l'assocation ? : *</label>
+              <div *ngIf="maIsChecked" class="input-group-icon ">
 								<!-- <div class="icon"><i class="fa fa-globe" aria-hidden="true"></i></div> -->
 								<div class="form-select" >
 											<select id="howKnowUs-select" >
@@ -167,6 +208,94 @@
 								</select>
 								</div>
 							</div>
+
+              <!-- Suivez vous GDO sur ses différents réseaux ? -->
+              <div class="row">
+                <div class="col-12">
+                  <label for="">Suivez vous GDO sur ses différents réseaux ? : </label>
+                  <div class="single-element-widget mt-10 d-flex flex-row align-items-center">
+                    <label for="">- Facebook (Génération Dorée)  : </label>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; oui &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio-facebook" [checked]="facebookIsChecked" (click)="updateSocialMedia(true,'facebook')" >
+                        <label for="confirm-radio-facebook"></label>
+                      </div>
+                    </div>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; non &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio1-facebook" [checked]="!facebookIsChecked" (click)="updateSocialMedia(false,'facebook')">
+                        <label for="confirm-radio1-facebook"></label>
+                      </div>
+                    </div>
+                  </div>
+                  <input *ngIf="facebookIsChecked" formControlName="facebook" type="text" name="facebook" placeholder="Entrez votre compte facebook" onfocus="this.placeholder = 'Entrez votre compte facebook'"
+									onblur="this.placeholder = ''" required class="single-input">
+
+                  <div class="single-element-widget mt-10 d-flex flex-row align-items-center">
+                    <label for="">- Linkedin (Génération Dorée) : </label>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; oui &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio-linkedin" [checked]="linkedinIsChecked" (click)="updateSocialMedia(true,'linkedin')" >
+                        <label for="confirm-radio-linkedin"></label>
+                      </div>
+                    </div>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; non &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio1-linkedin" [checked]="!linkedinIsChecked" (click)="updateSocialMedia(false,'linkedin')">
+                        <label for="confirm-radio1-linkedin"></label>
+                      </div>
+                    </div>
+                  </div>
+                  <input *ngIf="linkedinIsChecked" formControlName="linkedin" type="text" name="linkedin" placeholder="Entrez votre compte linkedin" onfocus="this.placeholder = 'Entrez votre compte linkedin'"
+									onblur="this.placeholder = ''" required class="single-input">
+
+                  <div class="single-element-widget mt-10 d-flex flex-row align-items-center">
+                    <label for="">- Instagram ( generationdoree_) </label>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; oui &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio-instagram" [checked]="instagramIsChecked" (click)="updateSocialMedia(true,'instagram')" >
+                        <label for="confirm-radio-instagram"></label>
+                      </div>
+                    </div>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; non &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio1-instagram" [checked]="!instagramIsChecked" (click)="updateSocialMedia(false,'instagram')">
+                        <label for="confirm-radio1-instagram"></label>
+                      </div>
+                    </div>
+                  </div>
+                  <input *ngIf="instagramIsChecked" formControlName="instagram" type="text" name="instagram" placeholder="Entrez votre compte instagram" onfocus="this.placeholder = 'Entrez votre compte instagram'"
+									onblur="this.placeholder = ''" required class="single-input">
+
+                  <div class="single-element-widget mt-10 d-flex flex-row align-items-center">
+                    <label for="">-  Tik tok ( generationdoree0) : </label>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; oui &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio-tiktok" [checked]="tiktokIsChecked" (click)="updateSocialMedia(true,'tiktok')" >
+                        <label for="confirm-radio-tiktok"></label>
+                      </div>
+                    </div>
+                    <div class="switch-wrap d-inline-flex align-items-center"> <!-- justify-content-between -->
+                      <p>&nbsp; non &nbsp;</p>
+                      <div class="confirm-radio">
+                        <input  type="checkbox" id="confirm-radio1-tiktok" [checked]="!tiktokIsChecked" (click)="updateSocialMedia(false,'tiktok')">
+                        <label for="confirm-radio1-tiktok"></label>
+                      </div>
+                    </div>
+                  </div>
+                  <input *ngIf="tiktokIsChecked" formControlName="tiktok" type="text" name="tiktok" placeholder="Entrez votre compte tiktok" onfocus="this.placeholder = 'Entrez votre compte tiktok'"
+									onblur="this.placeholder = ''" required class="single-input">
+                </div>
+
+              </div>
+
 							<!-- For Gradient Border Use -->
 							<!-- <div class="ùt-10">
 										<div class="primary-input">
@@ -185,6 +314,48 @@
 					<!-- <div class="col-lg-3 col-md-4 mt-sm-30">
 
 					</div> -->
+          <!-- <div class="col-lg-3 col-md-4">
+            <div class="media contact-info">
+              <span class="contact-info__icon"><i class="ti-home"></i></span>
+              <div class="media-body">
+                <h3>Abidjan, Cote d'Ivoire</h3>
+              </div>
+            </div>
+            <div class="media contact-info">
+              <span class="contact-info__icon"><i class="ti-tablet"></i></span>
+              <div class="media-body">
+                <h3>+225 01 53 860 056</h3>
+                <p>Du lundi au Vendredi, de 8h à 18h</p>
+              </div>
+            </div>
+            <div class="media contact-info">
+              <span class="contact-info__icon"><i class="ti-email"></i></span>
+              <div class="media-body">
+                <h3>contact.gdor@gmail.com</h3>
+                <p>Envoyez vos requêtes!</p>
+              </div>
+            </div>
+            <div class="media contact-info">
+              <div class="media-body">
+                <h3>Nos Réseaux Sociaux</h3>
+                <div class="row"><div class="col-12">
+                <div class="social_media_links d-flex justify-content-between">
+                  <a style="color: black;" [href]="socialNetworkLink.facebook" target="_blank">
+                      <i class="fa fa-facebook"></i>
+                  </a>
+                  <a style="color: black;" [href]="socialNetworkLink.instagram" target="_blank">
+                      <i class="fa fa-instagram"></i>
+                  </a>
+                  <a style="color: black;" [href]="socialNetworkLink.linkedin" target="_blank">
+                      <i class="fa fa-linkedin"></i>
+                  </a>
+                  <a style="color: black;" [href]="socialNetworkLink.tiktok" target="_blank">
+                      <i class="fa-brands fa-tiktok"></i>
+                  </a></div></div>
+              </div>
+              </div>
+            </div>
+          </div> -->
 				</div>
 			</div>
 		</div>

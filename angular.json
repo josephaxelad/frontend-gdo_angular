@@ -38,7 +38,9 @@
             ],
             "scripts": [
               "src/assets/js/nice-select.min.js",
-              "src/assets/js/owl.carousel.min.js"
+              "src/assets/js/owl.carousel.min.js",
+              "src/assets/js/imagesloaded.pkgd.min.js",
+              "src/assets/js/jquery.magnific-popup.min.js"
             ]
           },
           "configurations": {

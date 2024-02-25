@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class PageHeaderComponent implements OnInit {
 
   @Input() title? : string = "";
-  @Input() bg? : string = "assets/img/banner/slider-home.jpg";
+  @Input() bg? : string = "assets/img/banner/slider-home1.jpg";
   @Input() img? : string = "";
   @Input() cdo : boolean = false;
   @Input() sa : boolean = false;

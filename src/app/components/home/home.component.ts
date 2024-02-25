@@ -33,7 +33,8 @@ export class HomeComponent implements OnInit {
 
     this._activitiesService.activities$.subscribe(
       (activities : Activity[])=>{
-        this.activities = activities.slice(-4)
+        this.activities = activities.slice(0,4)
+        console.log(activities.slice(0,4))
       }
     )
 

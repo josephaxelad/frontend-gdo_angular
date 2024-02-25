@@ -1,6 +1,7 @@
 export interface Member {
   id? : number;
   attributes:{
+    typeMember : string;
     email: string;
     firstname: string;
     lastname: string;
@@ -19,6 +20,10 @@ export interface Member {
     createdAt?: Date;
     updatedAt?: Date;
     publishedAt?: Date;
+    tiktok :string;
+    linkedin :string;
+    facebook :string;
+    instagram :string;
   }
 }
 

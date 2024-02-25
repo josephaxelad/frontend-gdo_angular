@@ -26,7 +26,7 @@ export class PartnersService {
     getNumberOfMembers(){
       this._http.get(this.api+'/partners').subscribe(
         (res : any)=>{
-          this.numberOfPatners = res.data.length
+          this.numberOfPatners = res.meta.pagination.total
           console.log(this.numberOfPatners)
           this.emit()
         },

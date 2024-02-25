@@ -1,34 +1,149 @@
-<app-page-header title="Action / Coeur d'or" img="assets/img/logos/Coeur d_Or 3.png"  [cdo]="true"></app-page-header>
+<app-page-header title="Action / Coeur d'or" img="assets/img/logos/Coeur d_Or 3.png" [cdo]="true"></app-page-header>
 <!-- <a href="/gdo/src/assets/img/logos/Shine Acad logo2.png" target="_blank" rel="noopener noreferrer"></a> -->
 <!--================Action / Coeur d'or=================-->
 <section class="blog_area single-post-area section-padding" style="padding: 60px 0 !important;">
   <div class="container">
-     <div class="row">
-        <div class="col-lg-8 posts-list">
-           <div class="single-post">
-              <!-- <div class="feature-img">
+    <div class="row">
+      <div class="col-lg-8 posts-list">
+        <div class="single-post">
+          <!-- <div class="feature-img">
                  <img style="background-color: #f5e5d6;" class="img-fluid" src="assets/img/logos/Coeur d_Or 1.png" alt="">
               </div> -->
-              <div class="blog_details">
-                 <h2>COEUR D’OR.
-                 </h2>
-                 <ul class="blog-info-link mt-3 mb-4">
-                    <li>Le pôle social de l’association.</li>
-                 </ul>
-                 <div class="quote-wrapper">
-                  <div class="quotes" style="border-left: 2px solid #ffcc00;">
-                    Personne n’est ni trop jeune ni trop vieux pour être utile. Nous ne sommes pas
+          <div class="blog_details">
+            <h2>COEUR D’OR.
+            </h2>
+            <ul class="blog-info-link mt-3 mb-4">
+              <li>Le pôle social de l’association.</li>
+            </ul>
+            <div class="quote-wrapper">
+              <div class="quotes" style="border-left: 2px solid #ffcc00;">
+                <!-- Personne n’est ni trop jeune ni trop vieux pour être utile. Nous ne sommes pas
                     responsables des malheurs des autres mais pouvons contribuer à leur bien-être à
                     travers des dons et aides de toutes sortes. Nous avons conscience des réalités de
                     notre époque et sommes en mesure d’apporter des solutions durables grâce à la
                     diversité de nos compétences et l’engagement de tous. Nous impliquer pour
-                    notre communauté, c’est participer à rendre le monde meilleur.
-                  </div>
-               </div>
+                    notre communauté, c’est participer à rendre le monde meilleur. -->
+                CŒUR D’OR est le pôle social de l’association qui vise à promouvoir l’engagement communautaire.
+                La jeunesse doit comprendre qu’il est important d’être solidaire les uns avec les autres.
+                Personne n’est ni trop jeune ni trop vieux pour être utile. Nous ne sommes pas responsables des malheurs
+                des autres mais pouvons contribuer à leur bien-être à travers des dons et aides de toutes sortes. Nous
+                avons conscience des réalités de notre époque et sommes en mesure d’apporter des solutions durables
+                grâce à la diversité de nos compétences et l’engagement de tous. Nous impliquer pour notre communauté,
+                c’est participer à rendre le monde meilleur.
+
               </div>
-           </div>
+            </div>
+          </div>
         </div>
-     </div>
+      </div>
+    </div>
   </div>
 </section>
+<!-- news__area_start  [hidden]="!activities.length"  -->
+<div  class="news__area section_padding " style="padding: 60px 0 !important;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="section_title text-center mb-55">
+          <h3><span id="activity-span-cdo">Activités</span></h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div  class="col-lg-8 mb-5 mb-lg-0">
+        <div *ngIf="activities.length" class="blog_left_sidebar">
+
+          <div *ngIf="categories.length && selectedCat != null">
+            <div>
+              <h2>&nbsp;{{selectedCat.attributes.name}}</h2>
+            </div>
+            <div class="quote-wrapper" style="background: white;">
+              <div class="quotes" style="border-left: 2px solid #e9b6ad;">
+                {{selectedCat.attributes.description}}
+              </div>
+            </div>
+            <br>
+          </div>
+
+          <article *ngFor="let activity of activities" class="blog_item">
+            <div class="blog_item_img">
+              <img class="card-img rounded-0" [src]="activity.attributes.picture?.data?.attributes?.url" alt="">
+              <a href="#" class="blog_item_date flex-column d-flex justify-content-center align-items-center"
+                style="background-color: #e9b6ad;">
+                <h3>{{activity.attributes.date | date : 'd'}}</h3>
+                <p>{{activity.attributes.date | date : 'MMM'}} {{activity.attributes.createdAt | date : 'y'}}</p>
+              </a>
+            </div>
+
+            <div class="blog_details" style="background-color: white;">
+              <a class="d-inline-block" href="single-blog.html">
+                <h2>{{activity.attributes.title}}</h2>
+              </a>
+              <ul *ngIf="activity.attributes.subtitle" class="blog-info-link">
+                <li><a href="javascript:void(0)">
+                    <!-- <i class="fa fa-user"></i>  -->
+                    {{activity.attributes.subtitle}}</a></li>
+              </ul>
+              <p>{{activity.attributes.description}}</p>
+
+            </div>
+          </article>
+
+
+        </div>
+        <div *ngIf="!activities.length" class="container">
+          <div class="row ">
+             <div class="col-lg-12 d-flex justify-content-center align-items-center">
+               <h3 class="text-heading">Aucune activité pour l'instant !</h3>
+             </div>
+             <div class="col-lg-12 d-flex justify-content-center align-items-center">
+               <img src="assets/img/icons/no-data.svg" height="150px" alt="">
+             </div>
+          </div>
+       </div>
+        <!-- <nav *ngIf="pages.length>1" class="blog-pagination justify-content-center d-flex">
+            <ul class="pagination">
+                <li *ngIf="currentPage > 1" class="page-item" (click)="getActivitiesBypage(currentPage-1)">
+                    <a href="javascript:void(0)" class="page-link" aria-label="Previous">
+                        <i class="ti-angle-left"></i>
+                    </a>
+                </li>
+                <li *ngFor="let i of pages" class="page-item" [class]="{'active' : i  == currentPage}" (click)="getActivitiesBypage(i)">
+                    <a href="javascript:void(0)" class="page-link">{{i}}</a>
+                </li>
+                <li *ngIf="currentPage < numberTotalOfpage" class="page-item" (click)="getActivitiesBypage(currentPage-1)">
+                    <a href="javascript:void(0)" class="page-link" aria-label="Next">
+                        <i class="ti-angle-right"></i>
+                    </a>
+                </li>
+            </ul>
+          </nav> -->
+      </div>
+      <div class="col-lg-4">
+        <div class="blog_right_sidebar">
+          <aside class="single_sidebar_widget post_category_widget aside-cat">
+            <h4 class="widget_title">Catégorie</h4>
+            <ul class="list cat-list">
+              <li>
+                <a [ngClass]="{'cat-active':selectedCat == null}" href="javascript:void(0)" class="d-flex"
+                  (click)="getAll()">
+                  <p>Tous</p>
+                  <!-- <p>(37)</p> -->
+                </a>
+              </li>
+              <li *ngFor="let cat of categories">
+                <a [ngClass]="{'cat-active':selectedCat?.id == cat.id}" href="javascript:void(0)" class="d-flex"
+                  (click)="getByCat(cat)">
+                  <p>{{cat.attributes.name}}</p>
+                  <!-- <p>(37)</p> -->
+                </a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- news__area_end  -->
 <!--================ Action / Coeur d'or =================-->
