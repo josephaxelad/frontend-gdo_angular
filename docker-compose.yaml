@@ -1,0 +1,10 @@
+services:
+  app:
+    environment:
+      - name=value
+
+    container_name: gdo
+    image: josephaxelad/gdo-front
+    restart: always
+    ports:
+      -'3000:3000'
