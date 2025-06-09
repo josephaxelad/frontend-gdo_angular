@@ -46,9 +46,9 @@ jobs:
     name: 🚀 Deploy
     runs-on: [self-hosted]
     # signifie que cette action sera exécutée que si les actions dans le tableau needs sont executée
-    needs: [build]
+    needs: [lint,build]
     # only build/deploy main branch on pushes
-    if: ${{ github.ref == 'refs/heads/main' && github.event_name == 'push' }}
+    if: ${{ (github.ref == 'refs/heads/ope' || github.ref == 'refs/heads/develop') && github.event_name == 'push' }}
     # env:
     #   APP_ENV: ${{ secrets.APP_ENV }}
 
