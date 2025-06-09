@@ -7,4 +7,4 @@ services:
     image: josephaxelad/gdo-front
     restart: always
     ports:
-      -'3002:3000'
+      -'3001:3000'

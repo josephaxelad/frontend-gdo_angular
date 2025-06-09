@@ -51,8 +51,7 @@ jobs:
           tags: josephaxelad/gdo-front:ope
           build-args: |
             COMMIT_SHA=${{ github.sha }} \
-            APP_ENV='ope'\
-          #  APP_ENV=${{ secrets.APP_ENV }} \
+            APP_ENV=${{ secrets.APP_ENV }} \
 
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
@@ -67,8 +66,7 @@ jobs:
           tags: josephaxelad/gdo-front:latest
           build-args: |
             COMMIT_SHA=${{ github.sha }} \
-            APP_ENV='re7' \
-          #  APP_ENV=${{ secrets.APP_ENV }} \
+            APP_ENV=${{ secrets.APP_ENV_RE7 }} \
 
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
