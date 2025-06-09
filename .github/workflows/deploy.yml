@@ -3,7 +3,7 @@ name: 🚀 Deploy
 on:
   push:
     branches:
-      - develop
+      - re7
       - ope
   pull_request: {}
 
@@ -48,7 +48,7 @@ jobs:
     # signifie que cette action sera exécutée que si les actions dans le tableau needs sont executée
     needs: [lint,build]
     # only build/deploy main branch on pushes
-    if: ${{ (github.ref == 'refs/heads/ope' || github.ref == 'refs/heads/develop') && github.event_name == 'push' }}
+    if: ${{ (github.ref == 'refs/heads/ope' || github.ref == 'refs/heads/re7') && github.event_name == 'push' }}
     # env:
     #   APP_ENV: ${{ secrets.APP_ENV }}
 
@@ -71,8 +71,8 @@ jobs:
           docker compose -f docker-compose.yaml up -d --build
           docker system prune --all --volumes --force
 
-      - name: 🚀 Run Docker Compose on Staging
-        if: ${{ github.ref == 'refs/heads/develop' }}
+      - name: 🚀 Run Docker Compose on re7
+        if: ${{ github.ref == 'refs/heads/re7' }}
         env:
           APP_ENV: ${{ secrets.APP_ENV_RE7 }}
         run: |
