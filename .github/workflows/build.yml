@@ -12,7 +12,7 @@ jobs:
   build:
     name: 🐳 Build
     # only build/deploy main branch on pushes
-    if: ${{ (github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/ope') && github.event_name == 'push' }}
+    if: ${{ (github.ref == 'refs/heads/re7' || github.ref == 'refs/heads/ope') && github.event_name == 'push' }}
     runs-on: ubuntu-latest
     steps:
       - name: 🛑 Cancel Previous Runs
@@ -56,9 +56,9 @@ jobs:
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,mode=max,dest=/tmp/.buildx-cache-new
 
-      # build satging image
+      # build re7 image
       - name: 🐳 Build Staging Image
-        if: ${{ github.ref == 'refs/heads/develop' }}
+        if: ${{ github.ref == 'refs/heads/re7' }}
         uses: docker/build-push-action@v3
         with:
           context: .
