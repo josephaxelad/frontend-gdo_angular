@@ -9,21 +9,21 @@ import { Activity } from '../models/activity';
 })
 export class ActivitiesService {
 
-  private api : string = environment.api+"/api";
+  private api: string = environment.api + '/api';
   activities!: Activity[];
   activities$ = new BehaviorSubject<Activity[]>([]);
   numberOfActivities!: number;
   numberOfActivities$ = new BehaviorSubject<number>(0);
 
   constructor(private _http: HttpClient) {
-    this.getAll()
+    this.getAll();
    }
 
     /**
    * Emettre
    */
     emit(){
-      this.activities$.next(this.activities)
+      this.activities$.next(this.activities);
     }
 
 
@@ -70,17 +70,17 @@ export class ActivitiesService {
      * Récuperer des objets
      */
     getAll(){
-      this._http.get(this.api+'/activities?populate=*&sort=createdAt:desc').subscribe(
-        (res : any)=>{
-          this.numberOfActivities = res.meta.pagination.total
-          this.numberOfActivities$.next(this.numberOfActivities)
-          this.activities = res.data
-          this.emit()
+      this._http.get(this.api + '/activities?populate=*&sort=createdAt:desc').subscribe(
+        (res: any) => {
+          this.numberOfActivities = res.meta.pagination.total;
+          this.numberOfActivities$.next(this.numberOfActivities);
+          this.activities = res.data;
+          this.emit();
         },
-        (error : any)=>{
+        (error: any) => {
 
         }
-      )
+      );
     }
 
     /**

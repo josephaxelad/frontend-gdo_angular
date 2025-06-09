@@ -9,38 +9,38 @@ import { Partner } from '../models/partner';
 })
 export class PartnersService {
 
-  private api : string = environment.api+"/api";
+  private api: string = environment.api + '/api';
   partners!: Partner[];
   partners$ = new BehaviorSubject<Partner[]>([]);
   numberOfPatners!: number;
   numberOfPatners$ = new BehaviorSubject<number>(0);
 
   constructor(private _http: HttpClient) {
-    this.getNumberOfMembers()
-    this.getAll()
+    this.getNumberOfMembers();
+    this.getAll();
   }
 
     /**
      * Récuperer des objets
      */
     getNumberOfMembers(){
-      this._http.get(this.api+'/partners').subscribe(
-        (res : any)=>{
-          this.numberOfPatners = res.meta.pagination.total
-          console.log(this.numberOfPatners)
-          this.emit()
+      this._http.get(this.api + '/partners').subscribe(
+        (res: any) => {
+          this.numberOfPatners = res.meta.pagination.total;
+          console.log(this.numberOfPatners);
+          this.emit();
         },
-        (error : any)=>{
+        (error: any) => {
 
         }
-      )
+      );
     }
 
     /**
    * Emettre
    */
     emit(){
-      this.numberOfPatners$.next(this.numberOfPatners)
+      this.numberOfPatners$.next(this.numberOfPatners);
     }
 
     /**
@@ -85,16 +85,16 @@ export class PartnersService {
      * Récuperer des objets
      */
     getAll(){
-      this._http.get(this.api+'/partners?populate=*&sort=createdAt:desc').subscribe(
-        (res : any)=>{
-          this.partners = res.data
-          this.partners$.next(this.partners)
-          this.emit()
+      this._http.get(this.api + '/partners?populate=*&sort=createdAt:desc').subscribe(
+        (res: any) => {
+          this.partners = res.data;
+          this.partners$.next(this.partners);
+          this.emit();
         },
-        (error : any)=>{
+        (error: any) => {
 
         }
-      )
+      );
     }
 
     /**

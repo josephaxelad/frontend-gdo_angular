@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  api: "https://admin.generationdoree.org",
+  api: 'https://admin.generationdoree.org',
   // api: "http://localhost:1337",
   socialNetworkLink: {
     tiktok : 'http://www.tiktok.com/@generationdoree0',

@@ -61,7 +61,7 @@ export class AlertComponent implements OnInit, OnDestroy {
 
   removeAlert(alert: Alert) {
     // check if already removed to prevent error on auto close
-    if (!this.alerts.includes(alert)) return;
+    if (!this.alerts.includes(alert)) { return; }
 
     if (this.fade) {
         // fade out alert
@@ -78,7 +78,7 @@ export class AlertComponent implements OnInit, OnDestroy {
 }
 
 cssClass(alert: Alert) {
-    if (!alert) return;
+    if (!alert) { return; }
 
     const classes = ['alert', 'alert-dismissable'];
 
@@ -88,7 +88,7 @@ cssClass(alert: Alert) {
         [AlertType.Info]: 'alert-infoo',
         [AlertType.Warning]: 'alert-warning',
         [AlertType.Default]: ''
-    }
+    };
 
     classes.push(alertTypeClass[alert.type]);
 

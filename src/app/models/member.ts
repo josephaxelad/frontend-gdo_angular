@@ -1,7 +1,7 @@
 export interface Member {
-  id? : number;
-  attributes:{
-    typeMember : string;
+  id?: number;
+  attributes: {
+    typeMember: string;
     email: string;
     firstname: string;
     lastname: string;
@@ -15,16 +15,16 @@ export interface Member {
     associativeExperience: string;
     cv?: string;
     verified?: string;
-    qualities :string;
-    howKnowUs :string;
+    qualities: string;
+    howKnowUs: string;
     createdAt?: Date;
     updatedAt?: Date;
     publishedAt?: Date;
-    tiktok :string;
-    linkedin :string;
-    facebook :string;
-    instagram :string;
-  }
+    tiktok: string;
+    linkedin: string;
+    facebook: string;
+    instagram: string;
+  };
 }
 
 

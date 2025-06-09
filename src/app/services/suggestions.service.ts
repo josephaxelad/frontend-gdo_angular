@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SuggestionsService {
 
-  private api : string = environment.api+"/api";
+  private api: string = environment.api + '/api';
   suggestions!: Suggestion[];
   suggestions$ = new BehaviorSubject<Suggestion[]>([]);
 
@@ -19,7 +19,7 @@ export class SuggestionsService {
    * Emettre
    */
     emit(){
-      this.suggestions$.next(this.suggestions)
+      this.suggestions$.next(this.suggestions);
     }
 
     /**
@@ -27,18 +27,18 @@ export class SuggestionsService {
      * @param object
      * @returns
      */
-    add(suggestion : Suggestion){
+    add(suggestion: Suggestion){
       return new Promise<string>((resolve, reject) => {
-        this._http.post(this.api+'/suggestions',{data : suggestion.attributes}).subscribe(
-          (res : any)=>{
-            resolve('Votre suggesion a été envoyée avec succès !')
+        this._http.post(this.api + '/suggestions', {data : suggestion.attributes}).subscribe(
+          (res: any) => {
+            resolve('Votre suggesion a été envoyée avec succès !');
           },
-          (error)=>{
-            reject(error.error.error.message)
+          (error) => {
+            reject(error.error.error.message);
 
           }
-        )
-      })
+        );
+      });
     }
 
     /**

@@ -1,6 +1,6 @@
 export interface Gallerie {
-  id : number;
-  attributes:{
-    image : {data : {attributes: { url : string}}};
-  }
+  id: number;
+  attributes: {
+    image: {data: {attributes: { url: string}}};
+  };
 }

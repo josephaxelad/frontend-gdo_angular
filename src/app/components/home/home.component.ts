@@ -6,7 +6,7 @@ import { ActivitiesService } from 'src/app/services/activities.service';
 import { MembersService } from 'src/app/services/members.service';
 import { PartnersService } from 'src/app/services/partners.service';
 import { environment } from 'src/environments/environment';
-declare var $ :any;
+declare var $: any;
 
 @Component({
   selector: 'app-home',
@@ -15,55 +15,55 @@ declare var $ :any;
 })
 export class HomeComponent implements OnInit {
 
-  api : string = environment.api;
+  api: string = environment.api;
   numberOfMembers!: number;
   numberOfActivities!: number;
   activities!: Activity[];
   numberOfPatners!: number;
   partners!: Partner[];
 
-  constructor(private _membersService : MembersService,private _activitiesService : ActivitiesService, private _partnersService : PartnersService) { }
+  constructor(private _membersService: MembersService, private _activitiesService: ActivitiesService, private _partnersService: PartnersService) { }
 
   ngOnInit(): void {
     this._membersService.numberOfMembers$.subscribe(
-      (numberOfMembers : number)=>{
+      (numberOfMembers: number) => {
         this.numberOfMembers = numberOfMembers;
       }
-    )
+    );
 
     this._activitiesService.activities$.subscribe(
-      (activities : Activity[])=>{
-        this.activities = activities.slice(0,4)
-        console.log(activities.slice(0,4))
+      (activities: Activity[]) => {
+        this.activities = activities.slice(0, 4);
+        console.log(activities.slice(0, 4));
       }
-    )
+    );
 
     this._activitiesService.numberOfActivities$.subscribe(
-      (numberOfActivities : number)=>{
+      (numberOfActivities: number) => {
         this.numberOfActivities = numberOfActivities;
       }
-    )
+    );
 
     this._partnersService.numberOfPatners$.subscribe(
-      (numberOfPatners : number)=>{
+      (numberOfPatners: number) => {
         this.numberOfPatners = numberOfPatners;
       }
-    )
+    );
 
     this._partnersService.partners$.subscribe(
-      (partners : Partner[])=>{
-        this.partners = partners
+      (partners: Partner[]) => {
+        this.partners = partners;
       }
-    )
+    );
 
     // setTimeout(() => {
     //   $(".owl-carousel").owlCarousel();
     // }, 1000);
     // $(".owl-carousel").owlCarousel();
 
-    setTimeout(()=>{
+    setTimeout(() => {
       $('.owl-carousel').owlCarousel({
-          autoWidth :true,
+          autoWidth : true,
           loop: true,
           nav: false,
           dots: false,

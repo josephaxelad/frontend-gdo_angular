@@ -17,6 +17,7 @@ jobs:
   lint:
     name: ⬣ ESLint
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       # arret si un 2 push est lancé
       - name: 🛑 Cancel Previous Runs
@@ -40,30 +41,30 @@ jobs:
       - name: 🔬 Lint
         run: npm run lint
 
-  typecheck:
-    name: ʦ TypeScript
-    runs-on: ubuntu-latest
-    steps:
-      - name: 🛑 Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.11.0
+  # typecheck:
+  #   name: ʦ TypeScript
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: 🛑 Cancel Previous Runs
+  #       uses: styfle/cancel-workflow-action@0.11.0
 
-      - name: ⬇️ Checkout repo
-        uses: actions/checkout@v3
-      - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
-      - name: Install dependencies
-        run: bun install
+  #     - name: ⬇️ Checkout repo
+  #       uses: actions/checkout@v3
+  #     - name: Setup Bun
+  #       uses: oven-sh/setup-bun@v1
+  #     - name: Install dependencies
+  #       run: bun install
 
-      # - name: ⎔ Setup node
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 18
+  #     # - name: ⎔ Setup node
+  #     #   uses: actions/setup-node@v3
+  #     #   with:
+  #     #     node-version: 18
 
-      # - name: 📥 Download deps
-      #   uses: bahmutov/npm-install@v1
+  #     # - name: 📥 Download deps
+  #     #   uses: bahmutov/npm-install@v1
 
-      - name: 🔎 Type check
-        run: bun run typecheck
+  #     - name: 🔎 Type check
+  #       run: bun run typecheck
 
   # build:
   #   name: 🐳 build

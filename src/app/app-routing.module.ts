@@ -20,14 +20,14 @@ const routes: Routes = [
   children : [
     {path: 'coeur-d-or', component: CdoComponent},
     {path: 'shine-academy', component: SaComponent},
-    {path: '',pathMatch : 'full' , redirectTo: ''},
+    {path: '', pathMatch : 'full' , redirectTo: ''},
   ]
   },
   {path: 'activites', component: ActiviesComponent,
     children : [
       {path: 'activites/activite/:id', component: ActivitySingleComponent},
       {path: '', component: ActivitiesAllComponent},
-      {path: '',pathMatch : 'full' , redirectTo: ''},
+      {path: '', pathMatch : 'full' , redirectTo: ''},
     ]
   },
   {path: 'galerie', component: GalleriesComponent},
@@ -41,7 +41,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{scrollPositionRestoration : 'enabled',anchorScrolling : 'enabled'})],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration : 'enabled', anchorScrolling : 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

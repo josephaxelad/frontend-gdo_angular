@@ -10,52 +10,52 @@ import { environment } from 'src/environments/environment';
 })
 export class ActivitiesAllComponent implements OnInit {
 
-  api : string = environment.api;
-  allActivities : Activity[] = []
-  activities : Activity[] = []
+  api: string = environment.api;
+  allActivities: Activity[] = [];
+  activities: Activity[] = [];
   activitiesByPage: Activity[] = [];
-  numberOfElementToShow : number = 8;
-  currentPage : number = 1;
-  numberTotalOfpage : number = 0;
-  pages : number[] = [];
+  numberOfElementToShow = 8;
+  currentPage = 1;
+  numberTotalOfpage = 0;
+  pages: number[] = [];
 
-  constructor(private _activitiesService : ActivitiesService) { }
+  constructor(private _activitiesService: ActivitiesService) { }
 
   ngOnInit(): void {
-    this.getAll()
+    this.getAll();
   }
 
   /**Récuperer les objects */
   getAll(){
     this._activitiesService.activities$.subscribe(
-      (activities : Activity[])=>{
-        this.allActivities = activities
-        this.activities = activities
-        this.getNumberTotalOfpage()
-        this.setPages()
-        this.getActivitiesBypage(1)
+      (activities: Activity[]) => {
+        this.allActivities = activities;
+        this.activities = activities;
+        this.getNumberTotalOfpage();
+        this.setPages();
+        this.getActivitiesBypage(1);
       }
-    )
+    );
   }
 
-  //Obtenir le nombre total de pages
+  // Obtenir le nombre total de pages
   getNumberTotalOfpage(){
-    this.numberTotalOfpage = Math.ceil(this.activities?.length/this.numberOfElementToShow)
+    this.numberTotalOfpage = Math.ceil(this.activities?.length / this.numberOfElementToShow);
   }
 
   setPages(){
-    this.pages=[];
+    this.pages = [];
     for (let i = 1; i < this.numberTotalOfpage + 1; i++) {
-      this.pages.push(i)
+      this.pages.push(i);
     }
   }
 
   /**Récuperer les object par page*/
-  getActivitiesBypage(currentPage : number){
-    window.scrollTo(0,0);
+  getActivitiesBypage(currentPage: number){
+    window.scrollTo(0, 0);
     this.currentPage = currentPage;
 
-    this.activitiesByPage = this.activities?.slice(this.numberOfElementToShow*(currentPage-1),this.numberOfElementToShow*currentPage)
+    this.activitiesByPage = this.activities?.slice(this.numberOfElementToShow * (currentPage - 1), this.numberOfElementToShow * currentPage);
   }
 
 }

@@ -1,6 +1,6 @@
 export interface Suggestion {
-  id? : number;
-  attributes:{
+  id?: number;
+  attributes: {
     email: string;
     object: string;
     name: string;
@@ -8,5 +8,5 @@ export interface Suggestion {
     createdAt?: Date;
     updatedAt?: Date;
     publishedAt?: Date;
-  }
+  };
 }

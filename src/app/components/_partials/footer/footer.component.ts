@@ -11,13 +11,13 @@ export class FooterComponent implements OnInit {
 
   currentRoute!: string; // "/actions/coeur-d-or" "/actions/shine-academy"
   socialNetworkLink: {
-    tiktok : string,
-    linkedin :string,
-    facebook : string,
-    instagram : string
+    tiktok: string,
+    linkedin: string,
+    facebook: string,
+    instagram: string
   } = environment.socialNetworkLink;
 
-  constructor(private _router: Router,private _activatedRoute: ActivatedRoute) {
+  constructor(private _router: Router, private _activatedRoute: ActivatedRoute) {
 
     this._router.events.subscribe((event) => {
 

@@ -9,19 +9,19 @@ import { ActivityCategory } from '../models/activity-category';
 })
 export class ActivitiesCategoriesService {
 
-  private api : string = environment.api+"/api";
+  private api: string = environment.api + '/api';
   categories!: ActivityCategory[];
   categories$ = new BehaviorSubject<ActivityCategory[]>([]);
 
   constructor(private _http: HttpClient) {
-    this.getAll()
+    this.getAll();
   }
 
     /**
    * Emettre
    */
     emit(){
-      this.categories$.next(this.categories)
+      this.categories$.next(this.categories);
     }
 
     /**
@@ -66,15 +66,15 @@ export class ActivitiesCategoriesService {
      * Récuperer des objets
      */
     getAll(){
-      this._http.get(this.api+'/activity-sub-categories/?populate=*').subscribe(
-        (res : any)=>{
-          this.categories = res.data
-          this.emit()
+      this._http.get(this.api + '/activity-sub-categories/?populate=*').subscribe(
+        (res: any) => {
+          this.categories = res.data;
+          this.emit();
         },
-        (error : any)=>{
+        (error: any) => {
 
         }
-      )
+      );
     }
 
     /**
