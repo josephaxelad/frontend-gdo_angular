@@ -76,6 +76,6 @@ jobs:
         env:
           APP_ENV: ${{ secrets.APP_ENV_RE7 }}
         run: |
-          docker pull josephaxelad/gdo-front:develop
+          docker pull josephaxelad/gdo-front:latest
           docker compose -f docker-compose.staging.yaml up -d
           docker system prune --all --volumes --force
